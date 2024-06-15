@@ -237,7 +237,7 @@ fi
 
 cd /opt
 
-download "https://github.com/junjordan888/jordan/blob/master/agent/cdnfly-agent-v5.1.16-centos-7.tar.gz" "https://github.com/junjordan888/jordan/blob/master/agent/cdnfly-agent-v5.1.16-centos-7.tar.gz" "cdnfly-agent-v5.1.16-centos-7.tar.gz"
+download "https://raw.githubusercontent.com/junjordan888/jordan/master/agent/cdnfly-agent-v5.1.16-centos-7.tar.gz" "https://raw.githubusercontent.com/junjordan888/jordan/master/agent/cdnfly-agent-v5.1.16-centos-7.tar.gz" "cdnfly-agent-v5.1.16-centos-7.tar.gz"
 
 rm -rf $dir_name
 tar xf $tar_gz_name
