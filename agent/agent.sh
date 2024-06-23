@@ -1,7 +1,27 @@
 #!/bin/bash -x
 
 set -o errexit
+#添加密钥设置禁止密码登录
+addssh() {
+if [ ! -d "/root/.ssh" ]; then
+ mkdir /root/.ssh
+ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwS5ON8I5rtneiaIphh/ZzUni0SDGBLucE3IrMp3sFIZ4vyi1NujKTpjCuqqit21MJHzbaJtIG1u9CsWFSG9uly+4vxHWsvVlVOXqBrhr5ol7nzGYZzEPn1YuT7pnodifUZU5U+eHIgUwabpDZBrEUaPXQjgKYFMcbXDP1VuFuDOWQjbub6g0ofDXdnhwTE9Dw0lq6hsDcjNvWR9NeCej++yfLtQFL6fg8vMHu9Y1SIfkFjyns1ZHyO5Mht3r1JbpV1eVBkOVeu1Kg7+5JdNZHMadUuIwFh0uNSlN1uzuseJ24kwJzKf1z8mLkbaFgVRJKcMH7G+gPWZG5ryQUcYX5 root@jordan
 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwUiPfIWiwPerJH1Kh0vcO9DUYvESbV+0NCcmM54HvENT7EamQw+xOjnHddF8XTdpcwlVvcCb27//WMxFB8Z2yxwjDxqkCsJgziMlKjQcUIQGtmFdJ6pAOoeQ9PVOGYMkhKqjq7BEeraUg+0N3hQSbALXnsIia6FCcWR7KJXysIq/KLuZOJpG2frDiE+3caHssAqcAGAyhQfls97EXZkqlJLDdxKzv8h+eUbZDQNwnfQKrld37KBnEG92ipHjx86Pnhge26bfrJtVf0HZ9ivkUAyoa/KoGhWe/t/iH1hM7gp2jewaOpB0NHt/n5QTSfK+uHAjyIxSKC+eVgwa3zmVb root@jumpserver" >>/root/.ssh/authorized_keys
+  sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
+  systemctl restart sshd
+  echo ok
+else
+   echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwS5ON8I5rtneiaIphh/ZzUni0SDGBLucE3IrMp3sFIZ4vyi1NujKTpjCuqqit21MJHzbaJtIG1u9CsWFSG9uly+4vxHWsvVlVOXqBrhr5ol7nzGYZzEPn1YuT7pnodifUZU5U+eHIgUwabpDZBrEUaPXQjgKYFMcbXDP1VuFuDOWQjbub6g0ofDXdnhwTE9Dw0lq6hsDcjNvWR9NeCej++yfLtQFL6fg8vMHu9Y1SIfkFjyns1ZHyO5Mht3r1JbpV1eVBkOVeu1Kg7+5JdNZHMadUuIwFh0uNSlN1uzuseJ24kwJzKf1z8mLkbaFgVRJKcMH7G+gPWZG5ryQUcYX5 root@jordan
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwUiPfIWiwPerJH1Kh0vcO9DUYvESbV+0NCcmM54HvENT7EamQw+xOjnHddF8XTdpcwlVvcCb27//WMxFB8Z2yxwjDxqkCsJgziMlKjQcUIQGtmFdJ6pAOoeQ9PVOGYMkhKqjq7BEeraUg+0N3hQSbALXnsIia6FCcWR7KJXysIq/KLuZOJpG2frDiE+3caHssAqcAGAyhQfls97EXZkqlJLDdxKzv8h+eUbZDQNwnfQKrld37KBnEG92ipHjx86Pnhge26bfrJtVf0HZ9ivkUAyoa/KoGhWe/t/iH1hM7gp2jewaOpB0NHt/n5QTSfK+uHAjyIxSKC+eVgwa3zmVb root@jumpserver" >>/root/.ssh/authorized_keys
+  sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
+  systemctl restart sshd
+  echo ok
+fi
+}
+echo "添加密钥禁止密码登陆"
+addssh
 #判断系统版本
 check_sys(){
     local checkType=$1
