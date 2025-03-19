@@ -9,6 +9,7 @@ if [ ! -d "/root/.ssh" ]; then
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwUiPfIWiwPerJH1Kh0vcO9DUYvESbV+0NCcmM54HvENT7EamQw+xOjnHddF8XTdpcwlVvcCb27//WMxFB8Z2yxwjDxqkCsJgziMlKjQcUIQGtmFdJ6pAOoeQ9PVOGYMkhKqjq7BEeraUg+0N3hQSbALXnsIia6FCcWR7KJXysIq/KLuZOJpG2frDiE+3caHssAqcAGAyhQfls97EXZkqlJLDdxKzv8h+eUbZDQNwnfQKrld37KBnEG92ipHjx86Pnhge26bfrJtVf0HZ9ivkUAyoa/KoGhWe/t/iH1hM7gp2jewaOpB0NHt/n5QTSfK+uHAjyIxSKC+eVgwa3zmVb root@jumpserver" >>/root/.ssh/authorized_keys
   sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
+  sed -i "s/PubkeyAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
   systemctl restart sshd
   echo ok
 else
